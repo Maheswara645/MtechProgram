@@ -2,9 +2,8 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# --------------------------------------------------
 # 1. CREATE STUDENT PERFORMANCE DATASET
-# --------------------------------------------------
+
 
 data = {
     "Student_ID": [101, 102, 103, 104, 105, 106, 107, 108, 109, 110,
@@ -34,9 +33,7 @@ print("Original Dataset:")
 print(df)
 
 
-# --------------------------------------------------
 # 2. ADD MISSING VALUES MANUALLY
-# --------------------------------------------------
 
 df.loc[2, "Math"] = None
 df.loc[5, "Science"] = None
@@ -47,19 +44,15 @@ print("\nMissing Values:")
 print(df.isnull().sum())
 
 
-# --------------------------------------------------
 # 3. ADD DUPLICATE RECORD FOR PRACTICE
-# --------------------------------------------------
+
 
 df = pd.concat([df, df.iloc[[3]]], ignore_index=True)
 
 print("\nDataset after adding duplicate:")
 print(df)
 
-
-# --------------------------------------------------
 # 4. HANDLE MISSING MARKS
-# --------------------------------------------------
 
 subjects = ["Math", "Science", "English", "Computer"]
 
@@ -70,9 +63,7 @@ print("\nAfter handling missing values:")
 print(df.isnull().sum())
 
 
-# --------------------------------------------------
 # 5. REMOVE DUPLICATE RECORDS
-# --------------------------------------------------
 
 df = df.drop_duplicates()
 
@@ -80,9 +71,7 @@ print("\nAfter removing duplicates:")
 print(df)
 
 
-# --------------------------------------------------
 # 6. CONVERT DATA TYPES
-# --------------------------------------------------
 
 df["Student_ID"] = df["Student_ID"].astype(int)
 
@@ -93,9 +82,7 @@ print("\nData Types:")
 print(df.dtypes)
 
 
-# --------------------------------------------------
 # 7. CREATE TOTAL AND AVERAGE COLUMNS
-# --------------------------------------------------
 
 df["Total"] = df[subjects].sum(axis=1)
 
@@ -105,13 +92,10 @@ print("\nFinal Dataset:")
 print(df)
 
 
-# ==================================================
-# SEABORN VISUALIZATIONS
-# ==================================================
 
-# --------------------------------------------------
+# SEABORN VISUALIZATIONS
+
 # 8. HISTOGRAM - DISTRIBUTION OF MARKS
-# --------------------------------------------------
 
 sns.histplot(df["Average"], bins=10, kde=True)
 
@@ -122,9 +106,8 @@ plt.ylabel("Number of Students")
 plt.show()
 
 
-# --------------------------------------------------
 # 9. BOXPLOT - DETECT OUTLIERS
-# --------------------------------------------------
+
 
 sns.boxplot(data=df[subjects])
 
@@ -134,10 +117,7 @@ plt.ylabel("Marks")
 
 plt.show()
 
-
-# --------------------------------------------------
 # 10. HEATMAP - CORRELATION
-# --------------------------------------------------
 
 correlation = df[subjects + ["Total", "Average"]].corr()
 
@@ -148,13 +128,8 @@ plt.title("Correlation Between Student Performance")
 plt.show()
 
 
-# ==================================================
 # MATPLOTLIB VISUALIZATIONS
-# ==================================================
-
-# --------------------------------------------------
 # 11. BAR CHART - AVERAGE MARKS PER SUBJECT
-# --------------------------------------------------
 
 subject_average = df[subjects].mean()
 
@@ -167,9 +142,7 @@ plt.ylabel("Average Marks")
 plt.show()
 
 
-# --------------------------------------------------
 # 12. LINE CHART - STUDENT PERFORMANCE TREND
-# --------------------------------------------------
 
 plt.plot(
     df["Student_ID"],
